@@ -1,20 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/login/Registro.tsx
 
 import { useState, type FormEvent } from "react";
 import styles from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
+import type { IRegistroForm } from './../interfaces/IRegistroForm';
 
-interface IRegistroForm{
-    nome: string;
-    sobreNome:string;
-    email:string;
-    senha:string;
-    confirmaSenha:string;
-}
 
 function Registro(){
     const navigate = useNavigate();
-
+    const [errors, setErrors] = useState<Partial<IRegistroForm>>({});
     const [formData, setFormData] = useState<IRegistroForm>({
             nome: '',
             sobreNome:'',
