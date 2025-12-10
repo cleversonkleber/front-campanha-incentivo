@@ -1,0 +1,59 @@
+/* src/components/Login.module.css */
+
+.loginContainer {
+  /* Estilo do container principal */
+  background-color: #ebe2e2;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  border: 1px solid rgb(153, 151, 151);
+}
+
+.title {
+  padding: 10px;
+  margin-bottom: 40px;
+  color: #686363;
+}
+
+.formGroup {
+  /* Estilo dos blocos de input */
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.inputField {
+  /* Estilo dos inputs */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submitButton {
+  /* Estilo do botão */
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.buttonregister{
+   width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
