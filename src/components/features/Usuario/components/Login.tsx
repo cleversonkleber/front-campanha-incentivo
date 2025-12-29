@@ -24,13 +24,13 @@ function Login() {
             let isValid = true; 
 
             if (!formData.email.trim()) {
-                newErrors.email = 'Email é obrigatorio.'; 
+                newErrors.email = 'Email é obrigatorio!'; 
                 isValid = false;
             }
 
 
-            if (formData.senha !== formData.senha) {
-                newErrors.senha = 'As senhas não coincidem.';
+            if (!formData.senha) {
+                newErrors.senha = 'A senha é obrigatorio!';
                 isValid = false;
             }
 
@@ -41,8 +41,7 @@ function Login() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
-     if (validateForm()) {
-            alert('Email não foi informado!');
+     if (!validateForm()) {
             return;
         }
 
@@ -61,7 +60,7 @@ function Login() {
   
 
   return (
-    // Aplica a classe única gerada pelo módulo, ex: "Login_loginContainer__aBc12"
+
     <div className={styles.loginContainer}>
       <h2 className={styles.title}>Acesso à Campanha de Incentivo</h2>
       
@@ -80,11 +79,11 @@ function Login() {
           {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="password">Senha:</label>
+          <label htmlFor="senha">Senha:</label>
           <input 
-            type="password" 
-            id="password" 
-            name="password" 
+            type="senha" 
+            id="senha" 
+            name="senha" 
             required
             value={formData.senha} 
             className={styles.inputField}
