@@ -1,4 +1,4 @@
-// src/components/login/Registro.tsx
+
 
 import { useState, type FormEvent } from "react";
 import styles from './Login.module.css';
@@ -27,22 +27,22 @@ function Registro(){
 
     const validateForm = () => {
         const newErrors: Partial<IRegistroForm> = {};
-        let isValid = true; // Flag para saber se passou em tudo
+        let isValid = true; 
 
-        // 1. Regra: Se o nome está vazio
+
         if (!formData.nome.trim()) {
-            newErrors.nome = 'O nome é obrigatório.'; // Adiciona o erro ao objeto
+            newErrors.nome = 'O nome é obrigatório.';
             isValid = false;
         }
 
-        // 2. Regra: Se as senhas não batem
+ 
         if (formData.confirmaSenha !== formData.senha) {
             newErrors.confirmaSenha = 'As senhas não coincidem.';
             isValid = false;
         }
 
-        setErrors(newErrors); // Atualiza o estado global com os erros coletados
-        return isValid;       // Diz ao handleSubmit se pode prosseguir
+        setErrors(newErrors); 
+        return isValid;       
         };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
