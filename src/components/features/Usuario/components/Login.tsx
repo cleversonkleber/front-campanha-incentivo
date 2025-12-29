@@ -1,18 +1,64 @@
 // src/components/Login.tsx
 
-import { useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from "react";
 import styles from './Login.module.css'; 
 import { useNavigate } from 'react-router-dom';
 
+interface ILoginForm{
+    email:string;
+    senha:string;
+}
+
 function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+
+  const [formData, setFormData] = useState<ILoginForm>({
+            email:'',
+            senha:''
+        });
+
+  const [errors, setErrors] = useState<Partial<ILoginForm>>({});      
+
+  const validateForm = () => {
+            const newErrors: Partial<ILoginForm> = {};
+            let isValid = true; 
+
+            if (!formData.email.trim()) {
+                newErrors.email = 'Email é obrigatorio.'; 
+                isValid = false;
+            }
+
+
+            if (formData.senha !== formData.senha) {
+                newErrors.senha = 'As senhas não coincidem.';
+                isValid = false;
+            }
+
+            setErrors(newErrors); 
+            return isValid;      
+    };
+
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
-    console.log('Login Submetido:', { email, password });
+     if (validateForm()) {
+            alert('Email não foi informado!');
+            return;
+        }
+
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+          const { name, value } = e.target;
+        
+
+        setFormData(prevFormData => ({
+            ...prevFormData,
+             [name]: value 
+        }));
+    };
+    
+  
 
   return (
     // Aplica a classe única gerada pelo módulo, ex: "Login_loginContainer__aBc12"
@@ -27,10 +73,11 @@ function Login() {
             id="email" 
             name="email" 
             required
-            value={email} 
+            value={formData.email} 
             className={styles.inputField} 
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} 
+            onChange={handleInputChange} 
           />
+          {errors.email && <p className={styles.errorText}>{errors.email}</p>}
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="password">Senha:</label>
@@ -39,9 +86,9 @@ function Login() {
             id="password" 
             name="password" 
             required
-            value={password} 
+            value={formData.senha} 
             className={styles.inputField}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} 
+            onChange={handleInputChange} 
           />
         </div>
             <button 

@@ -1,0 +1,11 @@
+/* Registro.module.css */
+.errorText {
+    color: #ff4d4f; /* Cor vermelha para erro */
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+.inputError {
+    border: 1px solid #ff4d4f; /* Borda vermelha no input */
+}

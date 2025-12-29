@@ -1,15 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/components/login/Registro.tsx
 
 import { useState, type FormEvent } from "react";
 import styles from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
-import type { IRegistroForm } from './../interfaces/IRegistroForm';
 
+interface IRegistroForm{
+    nome: string;
+    sobreNome:string;
+    email:string;
+    senha:string;
+    confirmaSenha:string;
+}
 
 function Registro(){
     const navigate = useNavigate();
-    const [errors, setErrors] = useState<Partial<IRegistroForm>>({});
+
     const [formData, setFormData] = useState<IRegistroForm>({
             nome: '',
             sobreNome:'',
@@ -18,6 +23,27 @@ function Registro(){
             confirmaSenha:''
     });
 
+    const [errors, setErrors] = useState<Partial<IRegistroForm>>({});
+
+    const validateForm = () => {
+        const newErrors: Partial<IRegistroForm> = {};
+        let isValid = true; // Flag para saber se passou em tudo
+
+        // 1. Regra: Se o nome está vazio
+        if (!formData.nome.trim()) {
+            newErrors.nome = 'O nome é obrigatório.'; // Adiciona o erro ao objeto
+            isValid = false;
+        }
+
+        // 2. Regra: Se as senhas não batem
+        if (formData.confirmaSenha !== formData.senha) {
+            newErrors.confirmaSenha = 'As senhas não coincidem.';
+            isValid = false;
+        }
+
+        setErrors(newErrors); // Atualiza o estado global com os erros coletados
+        return isValid;       // Diz ao handleSubmit se pode prosseguir
+        };
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           const { name, value } = e.target;
@@ -32,7 +58,7 @@ function Registro(){
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault(); 
         
-        if (formData.senha !== formData.confirmaSenha) {
+        if (validateForm()) {
             alert('A senha e a confirmação de senha não coincidem!');
             return;
         }
@@ -54,9 +80,14 @@ function Registro(){
                         name="nome" 
                         required
                         value={formData.nome} 
-                        className={styles.inputField} 
-                        onChange={handleInputChange} 
+                        onChange={handleInputChange}
+                        className={errors.nome ? styles.inputError : styles.inputField}
                     />
+                    {errors.nome && (
+                        <p id="nome-error" className={styles.errorText}>
+                            {errors.nome}
+                        </p>
+                    )}
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="sobreNome">Sobrenome:</label>
@@ -66,9 +97,10 @@ function Registro(){
                         name="sobreNome" 
                         required
                         value={formData.sobreNome} 
-                        className={styles.inputField}
-                        onChange={handleInputChange} 
+                        onChange={handleInputChange}
+                        className={errors.confirmaSenha ? styles.inputError : styles.inputField} 
                     />
+                    {errors.confirmaSenha && <p className={styles.errorText}>{errors.confirmaSenha}</p>}
                 </div>
 
                 <div className={styles.formGroup}>
@@ -108,6 +140,7 @@ function Registro(){
                         className={styles.inputField}
                         onChange={handleInputChange} 
                     />
+                {errors.confirmaSenha && <p className={styles.errorText}>{errors.confirmaSenha}</p>}
                 </div>
                 <button type="submit" className={styles.submitButton}>
                     Cadastrar
