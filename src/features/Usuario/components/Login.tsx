@@ -3,11 +3,9 @@
 import { useState, type FormEvent } from "react";
 import styles from './Login.module.css'; 
 import { useNavigate } from 'react-router-dom';
+import type { ILoginForm } from "../interfaces/ILogin";
+import {  }
 
-interface ILoginForm{
-    email:string;
-    senha:string;
-}
 
 function Login() {
   const navigate = useNavigate();
