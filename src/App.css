@@ -3,20 +3,23 @@
 .App {
   /* Garante que o container use 100% da largura e, crucialmente, 
      100% da altura visível (Viewport Height) */
-  width: 100vw; 
+  width: 100vw;
   height: 100vh;
-  
+
   /* 1. Ativa o Flexbox para gerenciar o layout interno */
-  display: flex; 
-  
+  display: flex;
+
   /* 2. Centraliza o conteúdo (Login) horizontalmente */
-  justify-content: center; 
-  
+  justify-content: center;
+
   /* 3. Centraliza o conteúdo (Login) verticalmente */
-  align-items: center; 
-  
+  align-items: center;
+
   /* Define a cor de fundo (opcional, mas bom para contexto) */
-  background-color: #f4f4f9; 
+  background-color: #f4f4f9;
+
+  height: auto;
+  min-height: 100%;
 }
 
 /* Opcional: Se houver margin/padding padrão no body/html que atrapalhe 

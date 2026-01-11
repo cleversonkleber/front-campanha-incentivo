@@ -1,11 +1,85 @@
 /* Registro.module.css */
 .errorText {
-    color: #ff4d4f; /* Cor vermelha para erro */
-    font-size: 12px;
-    margin-top: 4px;
-    margin-bottom: 15px;
+  color: #ff4d4f;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 15px;
 }
 
 .inputError {
-    border: 1px solid #ff4d4f; /* Borda vermelha no input */
+  border: 1px solid #ff4d4f;
+}
+.buttonregister {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  background-color: #f5ecec;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(82, 77, 77, 0.1);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  border: 1px solid rgb(39, 95, 71);
+  overflow-y: auto;
+}
+
+.title {
+  padding: 10px;
+  margin-bottom: 40px;
+  color: #4c3f3f;
+}
+
+.formGroup {
+  /* Estilo dos blocos de input */
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.inputField {
+  /* Estilo dos inputs */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d7cece;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.submitButton {
+  /* Estilo do botão */
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.buttonlogin {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
 }
