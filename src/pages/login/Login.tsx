@@ -1,10 +1,12 @@
 import { useState, type FormEvent } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import type { ILoginForm } from "../interfaces/ILogin";
+import type { ILoginForm } from "../../interfaces/ILogin";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { signIn } = useAuth();
 
   const [formData, setFormData] = useState<ILoginForm>({
     email: "",
@@ -31,10 +33,16 @@ function Login() {
     return isValid;
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
+    }
+    try {
+      await signIn(formData);
+      navigate("/home");
+    } catch (err) {
+      console.error("Erro no fluxo de autenticacao", err);
     }
   };
 
@@ -68,7 +76,7 @@ function Login() {
         <div className={styles.formGroup}>
           <label htmlFor="senha">Senha:</label>
           <input
-            type="senha"
+            type="password"
             id="senha"
             name="senha"
             required

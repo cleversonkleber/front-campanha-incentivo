@@ -1,25 +1,22 @@
+import "./App.css";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, CssBaseline } from "@mui/material";
+import { AppRoutes } from "./routes/Index";
+import { BrowserRouter } from "react-router-dom";
 
-
-import './App.css';
-import Login from './features/Usuario/components/Login';
-import Register from './features/Usuario/components/Registro';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+const theme = createTheme();
 
 function App() {
   return (
-  
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-
-          <Route path="/register" element={<Register />} />
-
-          <Route path="*" element={<h1>404 | Página Não Encontrada</h1>} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 

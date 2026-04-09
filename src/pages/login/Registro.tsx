@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import styles from "./Registro.module.css";
 import { useNavigate } from "react-router-dom";
-import type { IRegistroForm } from "../interfaces/IRegistroForm";
-import { registrarUsuario } from "../api/usuarioService";
+import type { IRegistroForm } from "../../interfaces/IRegistroForm";
+import { registrarUsuario } from "../../services/usuarioService";
 
 function Registro() {
   const navigate = useNavigate();
@@ -56,12 +56,13 @@ function Registro() {
       return;
     }
 
-    registrarUsuario(formData)
+    const dados = registrarUsuario(formData)
       .then(() => {
         alert("Usuário Cadastrado com sucesso!");
         navigate("/login");
       })
       .catch((err) => console.error("Erro API", err));
+    console.log(dados);
   };
 
   return (

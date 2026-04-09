@@ -3,7 +3,7 @@ import { type IRegistroForm } from "../interfaces/IRegistroForm";
 const API_URL = "http://localhost:8080";
 
 export const registrarUsuario = async (
-  dados: Omit<IRegistroForm, "confirmaSenha">
+  dados: Omit<IRegistroForm, "confirmaSenha">,
 ) => {
   const response = await fetch(`${API_URL}/auth/register`, {
     method: "POST",
